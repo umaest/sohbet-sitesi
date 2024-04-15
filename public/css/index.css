@@ -1,0 +1,171 @@
+body {
+    background-color: rgb(20,150,250);
+    background-size: auto;
+    background-position: center;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(to right,#637ced 0,#c819d4 100%);
+}
+
+@media screen and (orientation: landscape) {
+.alert {
+    display: flex;
+    position:fixed;
+    width:auto;
+    min-width: 25%;
+    top: 90%;
+    right: 0%;
+    background-color: #da2519;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 0px 0px 5px;
+    animation: slideIn 0.5s forwards;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+    .alert p {
+font-size: 14px;
+font-family: Arial, Helvetica, sans-serif;
+} 
+        .alert img{
+width: 2.2rem;
+height: 2.2rem
+}}
+@media screen and (orientation: portrait) {
+    .alert {
+display: flex;
+    position: fixed;
+    top: 90%;
+    right: 0%;
+    width: 60%;
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    border-radius: 8px 0px 0px 8px;
+    animation: slideIn 0.5s forwards;
+    z-index: 999;
+}
+    .alert p {
+font-size: 10px;
+}
+    .alert img{
+width: 2.2rem;
+height:2.2rem
+}
+} 
+#join {
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%; 
+    translate: -50% -50%; 
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    
+          }
+#join #loginBtn {
+    position: relative;
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    color: inherit;
+    text-decoration: none;
+    margin: 5 auto 5px auto;
+    border: solid 1px #a6a11b;
+    background: #d1d93bfa;
+    text-align: center;
+    padding: 6px 20px;
+    transition: all 0.1s;
+    box-shadow: 0px 5px 0px #84261a;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+#join #loginBtn:active {
+    box-shadow: 0px 2px 0px #84261a;
+    position:relative;
+    top: 0.2rem;
+}
+#join #loginbtn::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    margin: auto;
+    transition: all 0.5s ease;
+    background:rgba(255,255,0,0.5);
+}
+#join #loginBtn::after{
+    width: 100%;
+    padding-bottom: 100%;
+}
+#join #loginBtn:disabled {
+    opacity: 0.6;
+}
+#join #loginBtn:hover {
+    animation: buton 1.0s forwards;
+}
+input[type="text"]{
+    align-items: center;
+    text-align: center;
+	padding: 10px;
+	border-radius: 7px;
+	border: none;
+	margin-bottom: 10px;
+	width: 100%;
+	max-width: 350px;
+	box-sizing: border-box;
+	font-size: 1.2rem;
+		}
+          @keyframes renk {
+            0% {
+      transform: translateY(70%);
+      background-color: rgba(0,0,0,0.4)
+    }
+            33% {
+      background-color: rgba(255,0,0,0.4)
+    }
+            66% {
+      background-color: rgba(0,255,0,0.4)
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+      background-color: rgba(255,255,255,0.4);
+    }
+          }
+/*@keyframes buton {
+    from {
+        background-color: #d1d93bfa;
+    }
+    to {
+        background-color: #727541fa;
+    }
+}*/
+@keyframes slideIn {
+    from { right: -80%; }
+    to { right: 5%; }
+}
+
+@keyframes slideOut {
+    from { right: 0; }
+    to { right: -80%; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(-2%); }
+    33% { transform: translateX(3%); }
+    66% { transform: translateX(-2%); }
+    100% { transform: translateX(1%); }
+}
