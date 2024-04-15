@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title><%=room%></title>
+        <link rel="stylesheet" type="text/css" href="./css/chat.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Sohbet sitesi">
+        <link rel="stylesheet" type="text/css" href="./css/FA/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/FA/css/solid.min.css">
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    </head>
+    <body> 
+        <script src="./socket/socket.io.js"></script>
+        <header class="header">
+            <div id="settings">
+                <div style="display: flex;">
+                    <div class="ayarlar-text">Ayarlar</div>
+                    <button class="fa-solid fa-x exit-btn" onclick="settings(false)"></button>
+                </div>
+                <div class="form-check form-switch" >
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                  </div>
+                  
+            </div>
+        </header>
+        <div id="message">
+            <div id="ustkısım2">
+                <text><%=room%></text>
+            </div>
+            <div id="msgbox">
+            </div>
+            <div id="write">
+                <textarea maxlength="2000" type="text" translate="no" id="msg" placeholder="Message"></textarea>
+                <button id="send" onclick="sendMsg()">></button>
+            </div>
+        </div>
+        <div class="contain">
+            <i class="menu fa-solid fa-bars"></i>
+            <div id="users">
+            
+            <div id="ustkısım">
+                <text>Users</text> 
+                <button id="settingsB" class="fa-solid fa-gear" onclick="settings(true)"></button>
+            </div>
+            </div>
+        </div>
+        <script>
+            let room = "<%=room%>"
+            let username = "<%=name%>"
+        </script>
+        <script src="./scripts/chat.js"></script>
+    </body>
+</html>

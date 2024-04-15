@@ -1,0 +1,45 @@
+<html lang="tr">
+    <head>
+        <title>meraba</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <meta name="description" content="Chhat machine">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <div id="join">
+            <form action="/login" method="POST" enctype="application/x-www-form-urlencoded">
+                <h1>Giriş Yap</h1>
+                <label>Adın:</label><br>
+                <input maxlength="10" type="text" id="oda" name="name" oninput="butonControl()" onkeydown="checkEnter(event, false)"><br>
+                <label >Oda:</label><br>
+                <input maxlength="10" type="text" id="ad" name="room" oninput="butonControl()" onkeydown="checkEnter(event, true)"><br>
+                <button type="submit" id="loginBtn">Giriş Yap</button></form>
+        </div>
+<script src="./scripts/button.js"></script>
+        <script>
+        function showAlert(msg) {
+                var alertBox = document.createElement('div');
+                alertBox.classList.add('alert');
+                alertBox.innerHTML = `<img src="https://pngimg.com/d/attention_PNG61.png"><p class="AlertText">${msg}</p>`;
+                document.body.appendChild(alertBox);
+                setTimeout(()=>{
+                alertBox.style.animation = "shake 0.8s forwards"
+                    setTimeout(function() {
+                        alertBox.style.animation = 'slideOut 0.8s forwards';
+                        setTimeout(function() {
+                            //alertBox.parentNode.removeChild(alertBox);
+                        }, 600);
+                    }, 4000);},500)
+            }
+            const err = document.cookie
+            if(err&& err != "null") {
+                showAlert(err)
+            }else{
+                let login = document.getElementById("join")
+                login.style = "animation: renk 1.5s forwards;"
+            }
+            document.cookie = null
+            
+        </script>
+    </body>
+</html>
