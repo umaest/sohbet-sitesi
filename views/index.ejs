@@ -1,8 +1,8 @@
 <html lang="tr">
     <head>
-        <title>meraba</title>
+        <title>Umut Chat</title>
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <meta name="description" content="Chhat machine">
+        <meta name="description" content="Sohbet ediyon bu kadar">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
@@ -23,20 +23,19 @@
                 alertBox.innerHTML = `<img src="https://pngimg.com/d/attention_PNG61.png"><p class="AlertText">${msg}</p>`;
                 document.body.appendChild(alertBox);
                 setTimeout(()=>{
-                alertBox.style.animation = "shake 0.8s forwards"
+                alertBox.style.animation = "shake 0.8s ease-in-out"
                     setTimeout(function() {
                         alertBox.style.animation = 'slideOut 0.8s forwards';
                         setTimeout(function() {
-                            //alertBox.parentNode.removeChild(alertBox);
+                            alertBox.parentNode.removeChild(alertBox);
                         }, 600);
-                    }, 4000);},500)
+                    }, 4000);},550)
             }
             const err = document.cookie
             if(err&& err != "null") {
                 showAlert(err)
             }else{
                 let login = document.getElementById("join")
-                login.style = "animation: renk 1.5s forwards;"
             }
             document.cookie = null
             

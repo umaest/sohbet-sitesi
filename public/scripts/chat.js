@@ -1,5 +1,3 @@
-
-
 const $ = query => document.querySelector(query)
 const users = $("#users")
 const messages =$("#msgbox")
@@ -7,27 +5,42 @@ const input = $("#msg")
 const button = $("#send")
 const socket = io()
 const setting = $("#settingsB")
+var sonMesaj = ""
+let div
 
-function addMsg(user,msg){
+async function addMsg(user,msg){
     const scro = messages.scrollHeight - messages.clientHeight >= messages.scrollTop + 90
+    sonmu = user == sonMesaj
     if (user == username) {
-        const ul = messages.appendChild(document.createElement("ul"))
-        ul.id = "myul"
-        const div = ul.appendChild(document.createElement("div"))
-        div.id = "usermsg"
-        div.innerHTML = `<text>${user}</text><br>`
-        
-        div.appendChild(document.createElement("p")).innerText = msg
-        ul.innerHTML += "<img alt=\"Profil resmi\"style=\"margin-left= 4px;\" src=\"./img/photo.jpg\"></img>"
+        if(!sonmu){
+            const ul = messages.appendChild(document.createElement("ul"))
+            ul.id = "myul"
+            div = ul.appendChild(document.createElement("div"))
+            div.id = "usermsg"
+            div.innerHTML += `<text>${user}</text><br>`
+            div.appendChild(document.createElement("p")).innerText = msg
+            //ul.innerHTML += "<img alt=\"Profil resmi\"style=\"margin-left= 4px;\" src=\"./img/photo.jpg\"></img>"
+            var img = ul.appendChild(document.createElement("img"))
+            img.alt = "Profil Resmi"
+            img.style = "margin-left= 4px"
+            img.src = "./img/photo.jpg"
+        }else{
+            div.appendChild(document.createElement("p")).innerText = msg
+        }
     }
     else {
-        const ul = $("#msgbox").appendChild(document.createElement("ul"))
-        ul.innerHTML = "<img alt=\"Profil resmi\" style=\"margin-right= 4px;\" title=\"profil resmi\"; src=\"./img/photo.jpg\"></img>"
-        const div = ul.appendChild(document.createElement("div"))
-        div.id = "usermsg"
-        div.innerHTML = `<text>${user}</text><br>`
-        div.appendChild(document.createElement("p")).innerText = msg
+        if(!sonmu){
+            const ul = messages.appendChild(document.createElement("ul"))
+            ul.innerHTML = "<img alt=\"Profil resmi\" style=\"margin-right= 4px;\" title=\"profil resmi\"; src=\"./img/photo.jpg\"></img>"
+            div = ul.appendChild(document.createElement("div"))
+            div.id = "usermsg"
+            div.innerHTML += `<text>${user}</text><br>`
+            div.appendChild(document.createElement("p")).innerText = msg
+        }else{
+            div.appendChild(document.createElement("p")).innerText = msg
+        }
     }
+    sonMesaj = user
     if(!scro) messages.scrollTo(!isNaN(messages.scrollHeight)? {top: 999999,right: 0}:messages.scrollHeight)
 }
 
@@ -91,8 +104,10 @@ function sendMsg(){
         socket.emit("message",input.value)
         input.value = ""
         setTimeout(()=>{
-            messages.scrollTo({top: 9999999,right:0})
-
+            messages.scrollTo({top: messages.scrollHeight,right:0})
         },5)
     }
+}
+function exit(){
+    window.location.href = window.location.href + "exit"
 }

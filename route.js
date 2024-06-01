@@ -6,9 +6,9 @@ const users = [];
 const onlineUsers = []
 
 async function checkSign(req, res, next) {
-  if (res.statusCode == 304) {res.render("index", { message: "İSİM ZATEN KULLANILIYOR!" });}else{
+  if (req.session.body) {res.render("index", { message: false });}else{
   const filterUser = (pass, name) => users.some((x) => pass === x.room && name === x.name);
-  if (req.session?.user && filterUser(req.session?.user.room, req.session?.user.name) /*&& !filt2(req.session.user.name)*/) {
+  if (req.session?.user && filterUser(req.session?.user.room, req.session?.user.name)) {
     next();
   } else {
     const ifUserExists = onlineUsers.some((x) => req.session?.user?.name === x.name);
@@ -22,7 +22,7 @@ route.use(
   session({
     secret: "chat",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
 
@@ -31,10 +31,10 @@ route.get("/", checkSign, function (req, res) {
 });
 
 route.post("/login", urlencode, (req, res) => {
-  if ((!req.body.name || !req.body.room) && (req.body.name.trim() < 3 || req.body.room.trim() < 3)) {
+  if ((!req.body.name || !req.body.room) || (req.body.name.trim() < 3 || req.body.room.trim() < 3)) {
     res.render("redirectM", {msg: "LÜTFEN FORMU DÜZGÜN BİR ŞEKİLDE DOLDURUN"})
   } else {
-    const renamedUser = onlineUsers.find((user) => user.name === req.body.name.trim() && req.body.room.trim() === user.room);
+    const renamedUser = onlineUsers.find((user) => user.name.toLowerCase() === req.body.name.trim().toLowerCase() && req.body.room.trim().toLowerCase() === user.room.toLowerCase());
 
     if (renamedUser) {
       res.render("redirectM",{msg: "İSİM ZATEN KULLANILIYOR BAŞKA İSİM DENEYİN"})
@@ -51,7 +51,11 @@ route.post("/login", urlencode, (req, res) => {
     }
   }
 });
-
+route.get("/exit", (req,res)=>{
+  req.session.destroy((err)=>{
+    res.redirect("/")
+  })
+})
 route.use(function (req, res, next) {
   if (!req.route|| req.statusCode == 404) return res.render("404");
   next();

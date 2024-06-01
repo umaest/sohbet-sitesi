@@ -111,7 +111,7 @@
         height: auto;
         min-width: 10px;
         min-height: 20px;
-        font-size: 20px;
+        font-size: 15px;
         padding-left: 2%; 
         width: 100%;
         display: flex;
@@ -121,16 +121,17 @@
         height: auto;
         min-width: 10px;
         min-height: 20px;
-        font-size: 20px;
+        font-size: 15px;
         padding-left: 2%; 
         display: flex;
         text-align: right;
         justify-content: flex-end;
    }
     #msgbox ul text{
-        font-size: 20px;
+        font-size: 19px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: bold;
+        color: #5b0012;
     }
     #msgbox ul img{
         border-radius: 50%;
@@ -236,6 +237,17 @@
         border: none !important;
         box-shadow: none !important;
         --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important
+    }
+    .çıkış{
+        position: absolute;
+        top: 100%;
+        left: 100%;
+        transform: translate(-100%, -100%);
+        border: none;
+        border-radius: 5% 5% 10px 5%;
+        background-color: #ff0133;
+        padding: 0.5rem;
+        color:#e7f7ff
     }
     @media (orientation: portrait) or (max-width: 750px) {
         #message{

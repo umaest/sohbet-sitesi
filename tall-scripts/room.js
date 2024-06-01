@@ -1,7 +1,7 @@
 const {getMessages} = require("./message")
 var users = []
 const addUser = ({ id, username, room, reid }) => {
-    username = username.trim().toLowerCase()
+    username = username.trim()
     room = room.trim().toLowerCase()
 
     if (!username&& !room) {
