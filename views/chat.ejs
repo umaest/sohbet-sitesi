@@ -8,9 +8,35 @@
         <link rel="stylesheet" type="text/css" href="./css/FA/css/fontawesome.min.css">
         <link rel="stylesheet" type="text/css" href="./css/FA/css/solid.min.css">
         <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-    </head>
-    <body> 
+        <script>
+            let room = "<%=room%>"
+            let username = "<%=name%>"
+            const publicVapidKey = "<%=vapidkey%>";
+            const getRoomName = () => {
+			let roomName = room;
+			return roomName;
+		}
+		var SIGNALING_SERVER = null;
+		var USE_AUDIO = true;
+		var USE_VIDEO = true;
+		var ROOM_ID = getRoomName();
+
+    // TODO
+		var ICE_SERVERS = [
+			{'urls': 'stun:stun.l.google.com:19302'},
+			{'urls': 'stun:stun.stunprotocol.org:3478'},
+			{'urls': 'stun:stun.sipnet.net:3478'},
+			{'urls': 'stun:stun.ideasip.com:3478'},
+			{'urls': 'stun:stun.iptel.org:3478'}
+		];
+        </script>
         <script src="./socket/socket.io.js"></script>
+        <script sc="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.0.2/peerjs.min.js" integrity="sha512-fsZxIg7oloUDTw46H5xUu+hJPypImGhil1hJ9IJHCWcqVRlJbVPoTmD7pp898DeOQI+x4+MzrhmaC3Zg0AQkmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+        <script src="./scripts/chat.js">r</script>
+    </head>
+    <body onload="init()"> 
+        <audio id="remote-audio" style="visibility: hidden;"></audio>
         <header class="header">
             <div id="settings">
                 <div style="display: flex;">
@@ -21,6 +47,7 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 </div>
+                <button class="fa fa-bell bildirim" onclick="openNot()"></button>
                 <button onclick="exit()" class="çıkış">ÇIKIŞ</button>  
             </div>
         </header>
@@ -40,15 +67,11 @@
             <div id="users">
             
             <div id="ustkısım">
-                <text>Users</text> 
-                <button id="settingsB" class="fa-solid fa-gear" onclick="settings(true)"></button>
+                <text>Users</text>
+                <button onclick="settings(true)" id="settingsB" class="fa-solid fa-gear"></button>
             </div>
             </div>
         </div>
-        <script>
-            let room = "<%=room%>"
-            let username = "<%=name%>"
-        </script>
-        <script src="./scripts/chat.js"></script>
+        
     </body>
 </html>
