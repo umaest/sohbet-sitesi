@@ -1,16 +1,16 @@
-    
+    /*px/rem = 16.28*/
     body {
         background-color: rgb(20,150,250);
         background-size: auto;
         background-position: center;
         font-family: Arial, Helvetica, sans-serif !important;
         margin: 0px;
-        line-height: normal !important
+        line-height: normal !important;
     }
     @font-face {
         font-family: 'Torus Notched';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 20%;
         font-display: block;
         src: url("../fonts/TorusNotched-SemiBold.ttf") format("truetype"); }
     #users {
@@ -19,17 +19,17 @@
         border-radius: 0px 0px 0px 0px;
         height: 100%;
         width: 20%;
-        min-width: 150px;
+        min-width: 9.22rem;
         overflow-y:auto;
         overflow-x: hidden;
         overflow-wrap: break-word;
+        display: block;
     }
     ::-webkit-scrollbar {
         color:rgba(0,0,0,0);
         background-color: rgba(0,0,0,0);
-        width:10px;
+        width:0.7rem;
         border-radius: 0px 10px 0px 0px;
-        float: inline-start;
         
     }
     ::-webkit-scrollbar-button{
@@ -39,8 +39,8 @@
 
     ::-webkit-scrollbar-thumb{
         background: rgba(91, 238, 251, 0.7);
-        border-radius: 10px;
-        min-width: 10px;
+        border-radius: 2rem;
+        min-width: 1rem;
     }
     
     ::-webkit-resizer{
@@ -51,7 +51,7 @@
     }
     #users ul {
         background-color: rgb(20, 31, 250);
-        border-radius: 7px;
+        border-radius: 0.7rem;
         display: block;
         width: auto;
         color:white;
@@ -84,15 +84,17 @@
         border-radius: 50%;
         height: 15%;
         width: 15%;
-        min-width: 30px;
-        min-height: 30px;
+        min-width: 1.84rem;
+        min-height: 1.84rem ;
         margin: 1vh 5px 1vh 0px;
         
     }
     #users text {
         font-family:Arial, Helvetica, sans-serif;
-        font-size: 100%;
         align-self: center;
+    }
+    #userul{
+        padding-left: 2vw !important;
     }
     #message {
         position:fixed;
@@ -106,14 +108,14 @@
     }
     #msgbox{
         width: 100%;
-        height: calc(100% - 70px - 0.2rem);
+        height: calc(100% - 4.3rem - 0.2rem);
         overflow-y: scroll;
     }
     #msgbox ul {
         height: auto;
-        min-width: 10px;
-        min-height: 20px;
-        font-size: 15px;
+        min-width: 1rem;
+        min-height: 2rem;
+        font-size: 1rem;
         padding-left: 2%;       
         width: 100%;
         display: flex;
@@ -121,24 +123,24 @@
    #msgbox #myul {
         width: 96%;
         height: auto;
-        min-width: 10px;
-        min-height: 20px;
-        font-size: 15px;
+        min-width: 0.7px;
+        min-height: 1.4px;
+        font-size: 1rem;
         padding-left: 2%; 
         display: flex;
         text-align: right;
         justify-content: flex-end;
    }
     #msgbox ul text{
-        font-size: 19px;
+        font-size: 1.3rem;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: bold;
         color: #5b0012;
     }
     #msgbox ul img{
         border-radius: 50%;
-        height: 40px;
-        width: 40px;
+        height: 2.45rem;
+        width: 2.45rem;
     }
     #msgbox ul p{
         overflow-wrap:break-word;
@@ -148,13 +150,13 @@
         display: block;
         background-color: rgb(64, 172, 194);
         border-radius: 5px 5px;     
-        padding: 4px;
-        margin: 5px;
+        padding: 0.24rem;
+        margin: 0.3rem;
     }
     #write{
         display: flex;
         flex: 1;
-        box-shadow: 0 0 10px #353535;
+        box-shadow: 0 0 0.7rem #353535;
     }
     #msg{
         flex: 1;
@@ -184,8 +186,8 @@
         background-color: white;
         border-radius: 0px 20px 0px 0px;
         height:4%;
-        width: 50px;
-        font-size: 20px;
+        width: 3rem;
+        font-size: 1.24rem;
     }
     #settings{
         position: relative;
@@ -210,14 +212,14 @@
         left: 100%;
         transform: translateX(-100%);
         background-color: #cdcdcd;
-        padding: 5px 10px;
+        padding: 0.31vw 1vh;
         border-radius: 0px 10px 0px 0px;
         border: none;
     }
     .ayarlar-text{
         width: 100%;
         background-color: white;
-        padding: 4px 0;
+        padding: 0.5vh 0;
         margin-bottom: 0.5rem;
         text-align: center;
         border-radius: 10px 10px 0 0;
@@ -240,7 +242,7 @@
         border: none;
         border-radius: 5% 5% 10px 5%;
         background-color: #990133;
-        padding: 0.5rem;
+        padding: 1.3vh;
         color:#e7f7ff;
         box-shadow: -0.5vw -0.5vh 10px #555;
     }
@@ -249,7 +251,7 @@
         top: 100%;
         transform: translateY(-100%);
         background-color: #990133;
-        padding: 0.7rem;
+        padding: 1.3vh;
         color:#e7f7ff;
         border-radius: 5% 5% 5% 10px;
         border: none;
@@ -257,12 +259,13 @@
     }
     #call-button{
         background-color: sandybrown;
-        height: 1.5rem;
         align-self: center;
-        margin-left: 2vw;
+        margin-left: 2rem;
         border: none;
         border-radius: 2px;
         box-shadow: 3px 3px 5px #555;
+        font-size: 1rem;
+        padding: 0.4rem;
     }
     @media (orientation: portrait) or (max-width: 750px) {
         #message{
@@ -289,3 +292,45 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
     }
+    .alertt {
+    display: flex;
+    position:fixed;
+    width:auto;
+    min-width: 25%;
+    top: 100%;
+    transform: translateY(-100%);
+    right: 0%;
+    background-color: #da2519;
+    color: white;
+    padding: 5px;
+    border-radius: 5px 0px 0px 5px;
+    animation: slideIn 0.5s forwards;
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+    .alertt p {
+font-size: 14px;
+font-family: Arial, Helvetica, sans-serif;
+padding-top: 0.6rem;
+} 
+    .alertt img{
+margin-top: 5px;
+width: 2.2rem;
+height: 2.2rem
+}
+@keyframes slideIn {
+    from { right: -80%; }
+    to { right: 0%; }
+}
+
+@keyframes slideOut {
+    from { right: 0; }
+    to { right: -80%; }
+}
+
+@keyframes shake {
+    0% { transform: translate(-2%, -100%); }
+    33% { transform: translate(3%, -100%); }
+    66% { transform: translate(-2%, -100%); }
+    100% { transform: translate(1%, -100%); }
+}

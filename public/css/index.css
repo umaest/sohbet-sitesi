@@ -13,7 +13,7 @@ body {
 .alert {
     display: flex;
     position:fixed;
-    width:auto;
+    max-width:30%;
     min-width: 25%;
     top: 100%;
     transform: translateY(-100%);
@@ -36,7 +36,7 @@ height: 2.2rem
 }}
 @media screen and (orientation: portrait) {
     .alert {
-display: flex;
+    display: flex;
     position: fixed;
     top: 100%;
     transform: translateY(-100%);
@@ -50,11 +50,11 @@ display: flex;
     z-index: 999;
 }
     .alert p {
-font-size: 10px;
+    font-size: 10px;
 }
     .alert img{
-width: 2.2rem;
-height:2.2rem
+    width: 2.2rem;
+    height:2.2rem
 }
 } 
 #join {

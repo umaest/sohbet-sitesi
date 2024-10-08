@@ -1,9 +1,6 @@
 const express = require("express");
 const ejs = require("ejs");
 const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const servListener = server.listen(8080);
 const { route, onlineUsers } = require("./route.js");
 //const { join } = require("path")
 const socketio = require("socket.io");
@@ -13,6 +10,7 @@ app.engine("ejs", ejs.renderFile);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(route);
+
 function disconn(user, room, socket) {
     const onUsers = onlineUsers.filter((x) => x.name == user && x.room == room);
     if (onUsers.length > 1) {
@@ -23,38 +21,42 @@ function disconn(user, room, socket) {
     }
 }
 
-/*const listener = app.listen(8080, () =>
+const listener = app.listen(8080, () =>
   console.log("Port ayarlandı: " + 8080)
-);*/
-const io = socketio(servListener);
+);
+const io = socketio(listener);
 const channels = {};
 const sockets = {};
 io.on("connection", (socket) => {
     console.time(socket)
     socket.channels = {};
     sockets[socket.id] = socket;
+        socket.on("joinvoice",(channell)=>{
+          channel = channell["channel"]
+          if (channel in socket.channels) {
+            console.log("["+ socket.id + "] ERROR: already joined ", channel);
+            return;
+        }
+    
+        if (!(channel in channels)) {
+            channels[channel] = {};
+        }
+    
+        for (id in channels[channel]) {
+            channels[channel][id].emit("addPeer", {
+                peer_id: socket.id,
+                should_create_offer: false
+            });
+            socket.emit("addPeer", { peer_id: id, should_create_offer: true });
+        }
+    
+        channels[channel][socket.id] = socket;
+        socket.channels[channel] = channel;
+        })
         socket.on("join", async (veri, callback) => {
             const channel = veri[0];
 
-            if (channel in socket.channels) {
-                //console.log("["+ socket.id + "] ERROR: already joined ", channel);
-                return;
-            }
-        
-            if (!(channel in channels)) {
-                channels[channel] = {};
-            }
-        
-            for (id in channels[channel]) {
-                channels[channel][id].emit("addPeer", {
-                    peer_id: socket.id,
-                    should_create_offer: false
-                });
-                socket.emit("addPeer", { peer_id: id, should_create_offer: true });
-            }
-        
-            channels[channel][socket.id] = socket;
-            socket.channels[channel] = channel;
+            
             onlineUsers.push({ name: veri[1], room: veri[0] });
             if (!disconn(veri[1], veri[0], socket)) {
                 const addU = addUser({ id: socket.id, room: veri[0], username: veri[1], reid: veri[2] });
@@ -87,7 +89,7 @@ io.on("connection", (socket) => {
         for (const channel in socket.channels) {
             part(channel);
           }
-          //console.log("["+ socket.id + "] disconnected");
+          console.log("["+ socket.id + "] disconnected");
           delete sockets[socket.id];
         if (getUser(socket.id)?.id?.length == 1) {
             const room = getUser(socket.id).room;
@@ -103,10 +105,10 @@ io.on("connection", (socket) => {
 
 
     const part = channel => {
-        //console.log("["+ socket.id + "] part ");
+        console.log("["+ socket.id + "] part ");
     
         if (!(channel in socket.channels)) {
-          //console.log("["+ socket.id + "] ERROR: not in ", channel);
+          console.log("["+ socket.id + "] ERROR: not in ", channel);
           return;
         }
     
@@ -123,7 +125,7 @@ io.on("connection", (socket) => {
       socket.on("relayICECandidate", config => {
         let peer_id = config.peer_id;
         let ice_candidate = config.ice_candidate;
-        //console.log("["+ socket.id + "] relaying ICE candidate to [" + peer_id + "] ", ice_candidate);
+        console.log("["+ socket.id + "] relaying ICE candidate to [" + peer_id + "] ", ice_candidate);
     
         if (peer_id in sockets) {
           sockets[peer_id].emit("iceCandidate", {
@@ -136,7 +138,7 @@ io.on("connection", (socket) => {
       socket.on("relaySessionDescription", config => {
         let peer_id = config.peer_id;
         let session_description = config.session_description;
-        //console.log("["+ socket.id + "] relaying session description to [" + peer_id + "] ", session_description);
+        console.log("["+ socket.id + "] relaying session description to [" + peer_id + "] ", session_description);
     
         if (peer_id in sockets) {
           sockets[peer_id].emit("sessionDescription", {
